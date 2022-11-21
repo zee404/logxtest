@@ -1,0 +1,107 @@
+    .tax-inner {
+        color:#808080ba;
+        /*margin-bottom: -8px;*/
+    }
+    
+    .tax-inner2{
+        color: #808080ba;
+            font-weight: 600;
+    /*margin-bottom: -8px;*/
+    }
+
+    /*.address-inner {*/
+    /*    font-weight:normal;*/
+    /*    color:grey;*/
+    /*}*/
+    
+    .address-inner {
+    font-weight: 700;
+    color: #808080ba;
+    font-size: small;
+    }
+
+    .display-4 {
+        font-weight: 300;
+    }
+    
+    
+
+    /*.dubai {*/
+    /*    font-weight: normal;*/
+    /*    color: #3c3939;*/
+    /*}*/
+    
+    .dubai {
+    font-weight: lighter;
+    color: #3c3939;
+    font-size: small;
+}
+
+    .first-table {
+        width: 100%;
+
+    }
+    .first-table th{
+        background-color:#3d3636;
+        color:white;
+        font-size:medium;
+        font-weight: normal;
+        padding:6px;
+        text-align:left;
+    
+    }
+
+    .first-table td{
+        padding:7px;
+        /*font-size: larger;*/
+        text-align:left;
+        
+    }
+
+    .second-table td{
+        border-bottom: 2px solid lightgrey;
+    }
+
+    .tablegrey {
+        color:grey;
+    }
+
+    .numberlist {
+        list-style-type:none;
+    }
+
+    .sub-table {
+        font-size:medium;
+        /*width:40%;*/
+        margin-left:55%;
+        /*text-align:right;*/
+        
+    
+    }
+
+    .sub-table td{
+        padding: 9px;
+    } 
+
+    .bg-grey {
+        background-color:#e6e6e6;
+    }
+    
+    body{
+        background-color:white;
+    }
+    
+    .blk{
+        color: #000000a8;
+    font-weight: 700;
+    font-size: small;
+    }
+    
+    
+    /*.mywrp{*/
+    /*padding:21px 12px 0 12px;*/
+    
+    /*padding-top: 10px;*/
+    /*padding-right: 20px;*/
+    /*padding-left: 20px;*/
+    /*}*/

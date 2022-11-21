@@ -1,0 +1,421 @@
+    <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>UBold - Responsive Admin Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="<?php echo base_url('assets/images/logx-logo-512x512.png');?>">
+
+        <!-- Plugins css -->
+         <link href="<?php echo base_url('assets/libs/sweetalert2/sweetalert2.min.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/libs/flatpickr/flatpickr.min.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/libs/custombox/custombox.min.css');?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/libs/datatables/dataTables.bootstrap4.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/libs/datatables/responsive.bootstrap4.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/libs/datatables/buttons.bootstrap4.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/libs/datatables/select.bootstrap4.css');?>" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/icons.min.css');?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/css/app.min.css');?>" rel="stylesheet" type="text/css" />
+
+        <style type="text/css">
+            .fixed-table-loading{
+                display: none;
+            }
+            .fixed-table-container thead th .th-inner 
+            {
+                padding: .0rem !important;
+            }
+            .btn-danger {
+    color: #fff;
+    background-color: #197990 !important;
+     border-color: white;
+}
+.badge {
+    color: #72747b;
+    font-size: 10.5px !important;
+}
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Navigation Bar-->
+       <?php $this->load->view('common/header');?>        <!-- End Navigation Bar-->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                         <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                   <li class="breadcrumb-item"><a href="javascript: void(0);">Partner </a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Partner List</a></li>
+                                  
+                                </ol>
+                            </div>
+                            <h4 class="page-title"> Partner List</h4>
+                        </div>
+                    </div>
+                </div>     
+              
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                           <!--  <h4 class="header-title">Vender list</h4> -->
+                          <?php echo form_open_multipart('driver/upload_drivers_by_general_file'); ?>
+                              <!-- <a href="#custom-modal" class="btn btn-danger waves-effect waves-light" data-animation="fadein" data-plugin="custommodal" data-overlaycolor="#38414a" id=""><i class="mdi mdi-plus-circle mr-1"></i> Add New Partner</a> -->
+
+                               <a href="#responsive" onclick="javascript:show_model(this)" flag="add" data-toggle="modal">
+                                <button class="btn blue">Add New <i class="icon-plus"></i></button>
+                            </a>
+                             <input type="file" name="userfile"class="btn btn-danger waves-effect waves-light" data-animation="fadein" data-plugin="" data-overlaycolor="#38414a" style="width: 250px;height: 35px;margin-left: 597px;">
+                              
+                          
+                               <a href="#custom-modals" class="btn btn-danger waves-effect waves-light" data-animation="fadein" data-plugin="custommodal" data-overlaycolor="#38414a"><i class="mdi mdi-plus-circle mr-1"></i>CSV Tips</a>
+                                <?php echo form_close(); ?>
+                                   <br><br>
+                                   <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" id="demo-delete-row" aria-controls="demo-custom-toolbar" type="button"><span>Delete</span></button>
+                                
+                            
+                            <table id="demo-custom-toolbar" class="example" data-toggle="table"
+                                   data-toolbar="#demo-delete-row"
+                                 
+                                   data-search="true"
+                                   data-show-refresh="true"
+                                   data-show-columns="true"
+                                    data-page-list="[5, 10, 20]"
+                                   data-page-size="5"
+                                   data-pagination="true" data-show-pagination-switch="true" class="table-borderless">
+
+                                <thead class="thead-light">
+
+                                <tr>
+                                    <th data-field="state" data-checkbox="true"></th>
+                                    <th data-field="id" data-sortable="true" data-formatter="">SR No</th>
+                                    <th data-field="name" data-sortable="true">Full Name</th>
+                                    <th data-field="date" data-sortable="true" data-formatter="dateFormatter">Phone</th>
+                                    <th data-field="amount" data-align="center" data-sortable="true" data-sorter="priceSorter">Email</th>
+                                    <th data-field="status" data-align="center" data-sortable="true" data-formatter="statusFormatter">Address</th>
+                                     <th data-field="Action" data-align="center" data-sortable="true" data-formatter="">Action</th>
+                                    
+
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                               
+                                <?php  foreach ($vendors as $key => $vendor) {?>
+                                        <tr>
+                                            <td></td>
+                                            <td ><?php echo $key+1;?></td>
+                                            <td ><?php echo $vendor->full_name;?></td>
+                                            <td ><?php echo $vendor->phone;?></td>
+                                            <td ><?php echo $vendor->email;?></td>
+                                            <td style="color: #72747b"><?php echo $vendor->address;?></td>
+                                             <td>
+                                             <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                            <a href="javascript:void(0);" class="action-icon"> <i class="fe-map-pin"></i></a>
+                                               <a class="" title="Edit" data-toggle="modal" onclick="javascript:show_model(this)" href="#responsive" flag="edit" pk="<?php echo $vendor->id?>">
+                                                    <i class="mdi mdi-square-edit-outline"></i>
+                                                </a>
+                                        </td>
+
+                                            
+                                           </tr>
+                                    <?php }?>
+
+                               
+                                </tbody>
+                            </table>
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col-->
+                </div>
+                <!-- end row-->
+
+            </div> <!-- end container -->
+        </div>
+  <div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog" style="width: 500px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" onclick="close_model()" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                            <h4 class="modal-title" id="mod_title">Add vendor</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div id="error_container" class="alert " style="display: none">
+                                <button class="close" aria-hidden="true" data-dismiss="alert_" onclick="hide_msg(this)" type="button"></button>
+                                <p id="error_msg"></p>
+                            </div>
+
+                            <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                <form id="add_vendor_form" action="#" method="post" class="horizontal-form" >
+                                    <input type="hidden" name="vendor_id" value="" id="vendor_id" class="form-control">
+
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group input-group-sm">
+                                                <label class="control-label">Full Name</label>
+                                                <input type="text" name="name" id="name" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group input-group-sm">
+                                                <label class="control-label">Email<span class="required">*</span></label>
+                                                <input type="text" name="email" id="email" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group input-group-sm">
+                                                <label class="control-label">Phone<span class="required">*</span></label>
+                                                <input type="text" name="phone" placeholder="971-123456789" id="phone" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group input-group-sm">
+                                                <label class="control-label">Address</label>
+                                                <input type="text" name="address" id="address" class="form-control">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button id="save_vendor_btn" onclick="save_vendor()" type="button" class="btn green">Save</button>
+                            <button id="edit_vendor_btn" style="display: none" onclick="update_vendor()" type="button" class="btn green">Update</button>
+                            <button id="responsive" onclick="close_model()" type="button" data-dismiss="modal" class="btn default">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+    
+
+            </div>
+        <!-- end wrapper -->
+   <div id="custom-modal" class="modal-demo">
+                    <button type="button" class="close" onclick="Custombox.modal.close();">
+                        <span>&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="custom-modal-title" id="mod_title" >Add New Partner</h4>
+                    <div class="custom-modal-text text-left">
+                       <form  id="add_vendor_form" action="#" method="post" enctype="multipart/form-data">
+                          <input type="hidden" name="vendor_id" value="" id="vendor_id" class="form-control">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="position">Phone</label>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Address</label>
+                                <input type="text" class="form-control" name="address" id="address" placeholder="Enter Location">
+                            </div>
+        
+                            <div class="text-right">
+                                <button  onclick="save_vendor()" type="button"  class="btn btn-success waves-effect waves-light">Save</button>
+                               
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+                 <div id="custom-modals" class="modal-demo" style="padding: 35px;">
+                      <blockquote class="hero">
+                                        <p> Click <a href="<?php echo base_url(); ?>download/DriverCSVFormate.csv">HERE</a> to Download Driver CSV File Format!</p>
+                                    </blockquote>
+
+                                    <ul class="list-unstyled  margin-top-10 margin-bottom-10">
+                                        <li><i class="icon-ok"></i> Driver Full Name ( Optional: Max. 90 characters )</li>
+                                        <li><i class="icon-ok"></i> Driver Phone( Required: Max. 12 characters with country code )</li>
+                                        <li><i class="icon-ok"></i> Driver Address ( Optional ) </li>
+                                        <li><i class="icon-ok"></i> Driver Email ( Optional )</li>
+                                    </ul>
+                </div> 
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2015 - 2019 &copy; UBold theme by <a href="">Coderthemes</a> 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+        <!-- Right Sidebar -->
+      
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- Vendor js -->
+        <script src="<?php echo base_url('assets/js/vendor.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/custombox/custombox.min.js');?>"></script>
+        <!-- Bootstrap Tables js -->
+         <script src="<?php echo base_url('assets/libs/sweetalert2/sweetalert2.min.js');?>"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="<?php echo base_url('assets/js/pages/sweet-alerts.init.js');?>"></script>
+
+        <script src="<?php echo base_url('assets/libs/bootstrap-table/bootstrap-table.min.js');?>"></script>
+         <script src="<?php echo base_url('assets/libs/datatables/jquery.dataTables.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/dataTables.bootstrap4.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/dataTables.responsive.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/responsive.bootstrap4.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/dataTables.buttons.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/buttons.bootstrap4.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/buttons.html5.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/buttons.flash.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/buttons.print.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/dataTables.keyTable.min.js');?>"></script>
+        <script src="<?php echo base_url('assets/libs/datatables/dataTables.select.min.js');?>"></script>
+
+        <!-- Init js -->
+        <script src="<?php echo base_url('assets/js/pages/bootstrap-tables.init.js');?>"></script>
+
+        <!-- App js-->
+        
+        <script src="<?php echo base_url('assets/js/app.min.js');?>"></script>
+       
+        <script type="text/javascript">
+         function show_model(ele){
+        hide_error();
+        var flag = $(ele).attr('flag');
+        //reset form values
+        
+        if(flag == 'edit'){
+            //changed model title
+            $("#mod_title").html('Edit vendor');
+            //change model button
+            $("#edit_vendor_btn").show();
+            $("#save_vendor_btn").hide();
+            var vendor_id = $(ele).attr('pk');
+        //    $("#email").prop("readonly", true);
+         //   $("#phone").prop("readonly", true);
+            get_vendor_by_id(vendor_id);
+
+        }
+
+    }
+           $(document).ready(function () {
+              $('#abc').on('click', function () {
+               swal("abc", "asdfh dfjh", "success");
+              });
+
+         
+                $('.example').DataTable( {
+                    dom: 'Brtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+                });
+        </script>
+        <script type="text/javascript">
+
+    function show_model(ele){
+        
+
+        if(flag == 'edit'){
+            //changed model title
+            $("#mod_title").html('Edit vendor');
+            //change model button
+           
+            var vendor_id = $(ele).attr('pk');
+        //    $("#email").prop("readonly", true);
+         //   $("#phone").prop("readonly", true);
+            get_vendor_by_id(vendor_id);
+
+        }
+
+    }
+            function save_vendor(){
+      
+
+        //var num_regex = /^\$?[0-9]+(\.[0-9][0-9])?$/;
+        var num_regex = /^([0-9]{3})\-\$?[0-9]+(\.[0-9][0-9])?$/;
+        var name = $("#name").val().trim();
+        var email = $("#email").val().trim();
+        var phone = $("#phone").val();
+        var address = $("#address").val().trim();
+
+        var url = "<?php echo base_url(); ?>"+"vendor/save_vendor";
+
+        if (phone == ''){
+            var error = '<strong>Error!</strong> Please Enter Phone number';
+        console.log('abc');
+            return false;
+        }
+
+
+        // if (!phone.match(num_regex)){
+        //     var error = '<strong>Error!</strong> Please Enter Valid Phone number';
+        //      console.log('abcd');
+        //     return false;
+        // }
+
+        if(email && phone){
+            $fields = {'name':name, 'email': email, 'phone':phone, 'address':address};
+            $.post(url, $fields, function(response){
+                if(response.success){
+                    var msg = '<strong>Success!</strong> Vendor has saved.';
+                    show_msg(msg, 'alert-success');
+                    location.reload();
+                }else{
+                  
+                }
+            },'json');
+        }else{
+            var error = '<strong>Error!</strong> Vendor not given.';
+           
+        }
+
+    }
+        </script>
+
+    </body>
+</html>

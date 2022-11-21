@@ -1,0 +1,1 @@
+[25-Mar-2020 15:52:03 UTC] PHP Fatal error:  Class 'CI_Model' not found in /home/thelogxc/demo.thelogx.com/application/models/Bag_model.php on line 9
